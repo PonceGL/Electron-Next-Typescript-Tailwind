@@ -19,7 +19,7 @@ if (isProd) {
     width: 1200,
     minWidth: 500,
     height: 800,
-    minHeight: 800,
+    minHeight: 700,
     title: "PonceGL",
     center: true,
     maximizable: true,
