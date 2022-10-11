@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "my-nextron-app",
-  "description": "My application description",
+  "name": "mjm-paqueteria-app",
+  "description": "Una aplicación de escritorio para la empresa MJM paqueteria",
   "version": "1.0.0",
   "author": "PonceGL",
   "main": "app/background.js",
@@ -16,6 +16,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.12",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0"
   },

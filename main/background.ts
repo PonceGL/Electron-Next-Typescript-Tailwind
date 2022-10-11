@@ -17,7 +17,7 @@ if (isProd) {
 
   const mainWindow = createWindow("main", {
     width: 1200,
-    minWidth: 500,
+    minWidth: 499,
     height: 800,
     minHeight: 700,
     title: "PonceGL",

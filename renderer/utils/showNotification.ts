@@ -9,7 +9,7 @@ const customNotification = ({
   body,
   interaction = true,
   callback = null,
-}: Props) => {
+}: Props): void => {
   const customNotification = new Notification(title, {
     body: body,
     lang: "es-ES",
@@ -49,7 +49,6 @@ export const showNotification = ({
     // Check whether notification permissions have already been granted;
     // if so, create a notification
     customNotification({ title, body, interaction, callback });
-    // …
   } else if (Notification.permission !== "denied") {
     // We need to ask the user for permission
     Notification.requestPermission().then((permission) => {
