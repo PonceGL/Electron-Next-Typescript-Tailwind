@@ -1,58 +1,65 @@
-import React, { FC, useState, useEffect } from "react";
+import React, {
+  FC,
+  useState,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 //Icons
 import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 
 //Hooks
-import { usePrefersColor } from "../../../hooks/usePrefersColor";
 
-const Profile: FC = () => {
-  const [themeDark, setThemeDark] = useState<boolean>(false);
-  // const isThemeDark = usePrefersColor(themeDark);
+interface Props {
+  themeDark: boolean;
+  setThemeDark: Dispatch<SetStateAction<boolean>>;
+}
+
+const Profile: FC<Props> = ({ themeDark, setThemeDark }) => {
+  const [colorThemeDefinedByUser, setColorThemeDefinedByUser] =
+    useState<boolean>(false);
 
   useEffect(() => {
-    if (window) {
-      const themeColor = window.localStorage.getItem("themeDark");
-      if (themeColor !== null && themeColor === "true") {
-        setThemeDark(true);
-      } else {
-        setThemeDark(false);
-      }
+    window.localStorage.setItem(
+      "colorThemeDefinedByUser",
+      colorThemeDefinedByUser ? "true" : null
+    );
+    if (!colorThemeDefinedByUser) {
+      setThemeDark(!themeDark);
     }
-
-    // return () => {
-    //   second
-    // }
   }, []);
-
-  console.log("====================================");
-  console.log(themeDark);
-  console.log("====================================");
 
   return (
     <div className="w-full flex flex-col justify-center items-center">
       <div className="sm:w-20 md:w-28 aspect-square relative">
         <button
           type="button"
+          className="w-10 aspect-square rounded-full flex justify-center items-center text-xs text-slate-400 dark:text-slate-800 bg-slate-800 dark:bg-slate-200 absolute bottom-0 -left-2"
+          onClick={() => {
+            setColorThemeDefinedByUser(!colorThemeDefinedByUser);
+          }}
+        >
+          {colorThemeDefinedByUser ? "User" : "Sistem"}
+        </button>
+        <button
+          type="button"
           className="w-10 aspect-square rounded-full flex justify-center items-center bg-slate-800 dark:bg-slate-200 absolute bottom-0 -right-2"
+          onClick={() => {
+            if (colorThemeDefinedByUser) {
+              setThemeDark(!themeDark);
+            }
+          }}
         >
           {themeDark ? (
             <SunIcon
               className="w-6 aspect-square stroke-slate-200 dark:stroke-slate-800"
               aria-hidden="true"
-              onClick={() => {
-                document.documentElement.className = "light";
-                setThemeDark(false);
-              }}
             />
           ) : (
             <MoonIcon
               className="w-6 aspect-square stroke-slate-200 dark:stroke-slate-800"
               aria-hidden="true"
-              onClick={() => {
-                document.documentElement.className = "dark";
-                setThemeDark(true);
-              }}
             />
           )}
         </button>

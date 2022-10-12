@@ -1,5 +1,5 @@
-appId: com.example.nextron
-productName: PonceGL Nextron App
+appId: com.mjmdesktop.nextron
+productName: MJM Desktop
 copyright: Copyright © 2022 PonceGL
 directories:
   output: dist

@@ -41,10 +41,13 @@ html {
 
 body > :nth-child(1) {
   min-height: 100vh;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 1fr;
   position: relative;
   transition: ease-in-out all 0.3s;
 }
@@ -70,15 +73,15 @@ body::-webkit-scrollbar {
   }
 } */
 
-@media only screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   body > :nth-child(1) {
     display: grid;
     grid-template-columns: 1fr 5fr;
     grid-template-rows: 1fr;
-  }
+  } */
 
-  /* #aside {
+/* #aside {
     width: 100%;
     display: flex;
   } */
-}
+/* } */

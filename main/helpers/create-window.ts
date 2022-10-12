@@ -2,11 +2,14 @@ import {
   screen,
   BrowserWindow,
   BrowserWindowConstructorOptions,
-} from 'electron';
-import Store from 'electron-store';
+} from "electron";
+import Store from "electron-store";
 
-export default (windowName: string, options: BrowserWindowConstructorOptions): BrowserWindow => {
-  const key = 'window-state';
+export default (
+  windowName: string,
+  options: BrowserWindowConstructorOptions
+): BrowserWindow => {
+  const key = `window-state`;
   const name = `window-state-${windowName}`;
   const store = new Store({ name });
   const defaultSize = {
@@ -46,8 +49,8 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
     });
   };
 
-  const ensureVisibleOnSomeDisplay = windowState => {
-    const visible = screen.getAllDisplays().some(display => {
+  const ensureVisibleOnSomeDisplay = (windowState) => {
+    const visible = screen.getAllDisplays().some((display) => {
       return windowWithinBounds(windowState, display.bounds);
     });
     if (!visible) {
@@ -78,7 +81,34 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
   };
   win = new BrowserWindow(browserOptions);
 
-  win.on('close', saveState);
+  win.on("close", async () => {
+    if (options.title === "Transportes MJM") {
+      saveState();
+    }
+  });
+
+  // win.on("close", async (e: any) => {
+  //   console.log("options.title: ", options.title);
+
+  //   e.preventDefault();
+
+  //   if (options.title === "Transportes MJM") {
+  //     const { response } = await dialog.showMessageBox(win, {
+  //       type: "question",
+  //       title: "  Confirm  ",
+  //       message: "¿Está seguro de que quiere cerrar esta ventana?",
+  //       buttons: ["Si", "No"],
+  //     });
+
+  //     if (response === 0) {
+  //       saveState();
+  //       app.quit();
+  //     }
+  //   } else {
+  //     win?.hide();
+  //     // win.destroy()
+  //   }
+  // });
 
   return win;
 };
